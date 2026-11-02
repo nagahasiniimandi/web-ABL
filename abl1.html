@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Academic Dashboard</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #263247;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background: #172554;
+    color: white;
+    padding: 25px 15px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 21px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar nav a {
+    color: #dbeafe;
+    text-decoration: none;
+    padding: 13px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #2563eb;
+    color: white;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 13px;
+    color: #bfdbfe;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    margin-left: 250px;
+    padding: 30px;
+    width: calc(100% - 250px);
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.topbar h1 {
+    color: #172554;
+    margin-bottom: 8px;
+}
+
+.topbar p {
+    color: #64748b;
+}
+
+.student-badge {
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 12px 18px;
+    border-radius: 25px;
+}
+
+/* PROFILE */
+.profile-card {
+    background: linear-gradient(120deg, #1e40af, #3b82f6);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: white;
+    color: #1d4ed8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.profile-card h2 {
+    margin-bottom: 8px;
+}
+
+.profile-card p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* SUMMARY CARDS */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #0000000c;
+    border-left: 5px solid #3b82f6;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    color: #64748b;
+    font-size: 15px;
+}
+
+.stat-card h2 {
+    color: #1d4ed8;
+    font-size: 30px;
+    margin: 12px 0;
+}
+
+.stat-card p {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+/* CONTENT CARDS */
+.content-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px #0000000c;
+    overflow-x: auto;
+    scroll-margin-top: 20px;
+}
+
+.content-card h2 {
+    color: #172554;
+    margin-bottom: 20px;
+}
+
+/* TABLES */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #eff6ff;
+    color: #1e40af;
+}
+
+td {
+    color: #475569;
+}
+
+.pass {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* ATTENDANCE */
+.attendance-item {
+    margin-bottom: 22px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 9px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.progress {
+    width: 100%;
+    height: 12px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #2563eb;
+    border-radius: 20px;
+}
+
+/* ANNOUNCEMENTS */
+.announcement {
+    background: #eff6ff;
+    padding: 18px;
+    border-left: 4px solid #3b82f6;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.announcement h3 {
+    color: #1e40af;
+    margin-bottom: 8px;
+}
+
+.announcement p {
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 1000px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        display: block;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar nav a {
+        font-size: 13px;
+    }
+
+    .sidebar-footer {
+        margin-top: 20px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 18px;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <h2>🎓 Student Portal</h2>
+
+    <nav>
+        <a href="#home" class="active">🏠 Dashboard</a>
+        <a href="#profile">👤 My Profile</a>
+        <a href="#results">📊 Semester Results</a>
+        <a href="#attendance">📅 Attendance</a>
+        <a href="#subjects">📚 Subjects</a>
+        <a href="#exams">📝 Exam Schedule</a>
+        <a href="#announcements">📢 Announcements</a>
+    </nav>
+
+    <p class="sidebar-footer">Academic Year 2026-27</p>
+
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="home">
+
+    <!-- HEADER -->
+    <header class="topbar">
+        <div>
+            <h1>Student Dashboard</h1>
+            <p>Welcome back! Here is your academic overview.</p>
+        </div>
+
+        <div class="student-badge">👩‍🎓 Student</div>
+    </header>
+
+    <!-- PROFILE -->
+    <section id="profile" class="profile-card">
+
+        <div class="avatar">S</div>
+
+        <div>
+            <h2>Student Name</h2>
+            <p>Roll Number: 26ABC001</p>
+            <p>B.Tech - Computer Science and Engineering</p>
+            <p>First Year | Section A</p>
+        </div>
+
+    </section>
+
+    <!-- SUMMARY CARDS -->
+    <section class="stats">
+
+        <div class="stat-card">
+            <h3>CGPA</h3>
+            <h2>8.75</h2>
+            <p>Overall Performance</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Attendance</h3>
+            <h2>92%</h2>
+            <p>Overall Attendance</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Subjects</h3>
+            <h2>6</h2>
+            <p>Current Semester</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Assignments</h3>
+            <h2>12</h2>
+            <p>Completed</p>
+        </div>
+
+    </section>
+
+    <!-- SEMESTER RESULTS -->
+    <section id="results" class="content-card">
+
+        <h2>Semester Results</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Semester</th>
+                    <th>SGPA</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Semester 1</td>
+                    <td>8.75</td>
+                    <td class="pass">Passed</td>
+                </tr>
+
+                <tr>
+                    <td>Semester 2</td>
+                    <td>8.60</td>
+                    <td class="pass">Passed</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <!-- ATTENDANCE -->
+    <section id="attendance" class="content-card">
+
+        <h2>Subject Attendance</h2>
+
+        <div class="attendance-item">
+            <div class="progress-info">
+                <span>Mathematics</span>
+                <span>95%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-fill" style="width:95%"></div>
+            </div>
+        </div>
+
+        <div class="attendance-item">
+            <div class="progress-info">
+                <span>Physics</span>
+                <span>90%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-fill" style="width:90%"></div>
+            </div>
+        </div>
+
+        <div class="attendance-item">
+            <div class="progress-info">
+                <span>Programming</span>
+                <span>88%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-fill" style="width:88%"></div>
+            </div>
+        </div>
+
+        <div class="attendance-item">
+            <div class="progress-info">
+                <span>English</span>
+                <span>96%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-fill" style="width:96%"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- SUBJECT INFORMATION -->
+    <section id="subjects" class="content-card">
+
+        <h2>Subject Information</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject Code</th>
+                    <th>Subject Name</th>
+                    <th>Credits</th>
+                    <th>Faculty</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>CS101</td>
+                    <td>Programming</td>
+                    <td>4</td>
+                    <td>Mr. Kumar</td>
+                </tr>
+
+                <tr>
+                    <td>MA101</td>
+                    <td>Mathematics</td>
+                    <td>4</td>
+                    <td>Mrs. Priya</td>
+                </tr>
+
+                <tr>
+                    <td>PH101</td>
+                    <td>Physics</td>
+                    <td>3</td>
+                    <td>Mr. Ravi</td>
+                </tr>
+
+                <tr>
+                    <td>EN101</td>
+                    <td>English</td>
+                    <td>2</td>
+                    <td>Mrs. Sita</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <!-- EXAM SCHEDULE -->
+    <section id="exams" class="content-card">
+
+        <h2>Examination Schedule</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Mathematics</td>
+                    <td>10-12-2026</td>
+                    <td>9:30 AM</td>
+                </tr>
+
+                <tr>
+                    <td>Physics</td>
+                    <td>12-12-2026</td>
+                    <td>9:30 AM</td>
+                </tr>
+
+                <tr>
+                    <td>Programming</td>
+                    <td>15-12-2026</td>
+                    <td>9:30 AM</td>
+                </tr>
+
+                <tr>
+                    <td>English</td>
+                    <td>18-12-2026</td>
+                    <td>9:30 AM</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <!-- ANNOUNCEMENTS -->
+    <section id="announcements" class="content-card">
+
+        <h2>Announcements</h2>
+
+        <div class="announcement">
+            <h3>📢 Internal Examination</h3>
+            <p>Internal examination timetable has been announced.</p>
+        </div>
+
+        <div class="announcement">
+            <h3>📢 Assignment Submission</h3>
+            <p>Submit all pending assignments before the deadline.</p>
+        </div>
+
+        <div class="announcement">
+            <h3>📢 Technical Workshop</h3>
+            <p>A technical workshop will be conducted in the college auditorium.</p>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Student Academic Dashboard | All Rights Reserved</p>
+    </footer>
+
+</main>
+</div>
+
+<script>
+// Sidebar active link functionality
+
+const links = document.querySelectorAll(".sidebar nav a");
+
+links.forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        links.forEach(function(item) {
+            item.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+    });
+
+});
+
+// Welcome message
+window.addEventListener("load", function() {
+    console.log("Welcome to Student Academic Dashboard!");
+});
+</script>
+
+</body>
+</html>
