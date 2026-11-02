@@ -1,4 +1,4 @@
-# Hi, I'm [Your Name] 👋
+# Hi, I'm NAGA HASINI IMANDI 👋
 
 🎓 Student | 💻 Aspiring Developer | 🌱 Always Learning
 
