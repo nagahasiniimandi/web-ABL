@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC College of Engineering</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #12345a;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav h2 {
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(
+                to right,
+                #12345a,
+                #2874a6
+            );
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .banner h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .banner p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .banner button {
+            background-color: #ffd166;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            color: #12345a;
+            margin-bottom: 25px;
+        }
+
+        /* Information Cards */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            width: 260px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #cccccc;
+        }
+
+        .card h3 {
+            color: #2874a6;
+            margin-bottom: 10px;
+        }
+
+        /* Admissions */
+        .admissions {
+            background-color: #e6f0fa;
+        }
+
+        /* Contact */
+        .contact {
+            background-color: #12345a;
+            color: white;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        footer {
+            background-color: #0b223d;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .banner h1 {
+                font-size: 28px;
+            }
+
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <h2>ABC College</h2>
+
+        <div>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#departments">Departments</a>
+            <a href="#faculty">Faculty</a>
+            <a href="#admissions">Admissions</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner" id="home">
+        <h1>ABC College of Engineering</h1>
+        <p>Learn Today, Lead Tomorrow</p>
+        <p>Building knowledge, skills, and a brighter future.</p>
+
+        <button onclick="location.href='#admissions'">
+            Apply for Admission
+        </button>
+    </div>
+
+    <!-- About College -->
+    <section id="about">
+        <h2>About Our College</h2>
+
+        <p>
+            ABC College of Engineering is dedicated to providing
+            quality education, practical learning, and opportunities
+            for students to develop their skills.
+        </p>
+    </section>
+
+    <!-- Departments -->
+    <section id="departments">
+        <h2>Our Departments</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Computer Science</h3>
+                <p>Learn programming, software development, and AI.</p>
+            </div>
+
+            <div class="card">
+                <h3>Electronics</h3>
+                <p>Study electronic systems and communication.</p>
+            </div>
+
+            <div class="card">
+                <h3>Mechanical</h3>
+                <p>Explore machines, design, and manufacturing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses">
+        <h2>Popular Courses</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>B.Tech</h3>
+                <p>Four-year undergraduate engineering program.</p>
+            </div>
+
+            <div class="card">
+                <h3>M.Tech</h3>
+                <p>Advanced postgraduate engineering program.</p>
+            </div>
+
+            <div class="card">
+                <h3>MBA</h3>
+                <p>Management and business administration program.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty -->
+    <section id="faculty">
+        <h2>Our Faculty</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Dr. Priya Sharma</h3>
+                <p>Head of Computer Science Department</p>
+            </div>
+
+            <div class="card">
+                <h3>Prof. Rahul Kumar</h3>
+                <p>Electronics Department</p>
+            </div>
+
+            <div class="card">
+                <h3>Dr. Ananya Rao</h3>
+                <p>Mechanical Department</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Facilities -->
+    <section id="facilities">
+        <h2>Campus Facilities</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Library</h3>
+                <p>A learning space with books and digital resources.</p>
+            </div>
+
+            <div class="card">
+                <h3>Computer Labs</h3>
+                <p>Modern computer labs for practical learning.</p>
+            </div>
+
+            <div class="card">
+                <h3>Sports</h3>
+                <p>Facilities for sports and physical activities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events -->
+    <section id="events">
+        <h2>College Events</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Tech Fest</h3>
+                <p>Technical competitions and project exhibitions.</p>
+            </div>
+
+            <div class="card">
+                <h3>Cultural Day</h3>
+                <p>Celebrate student talent and creativity.</p>
+            </div>
+
+            <div class="card">
+                <h3>Sports Meet</h3>
+                <p>Annual sports competitions and activities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admissions -->
+    <section class="admissions" id="admissions">
+        <h2>Admissions</h2>
+
+        <p>Interested in joining our college?</p>
+        <p>Review the eligibility requirements and prepare your documents.</p>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Step 1</h3>
+                <p>Check course eligibility.</p>
+            </div>
+
+            <div class="card">
+                <h3>Step 2</h3>
+                <p>Complete the application form.</p>
+            </div>
+
+            <div class="card">
+                <h3>Step 3</h3>
+                <p>Submit documents and follow the admission process.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+
+        <p>ABC College of Engineering</p>
+        <p>College Road, Hyderabad, India</p>
+        <p>Email: info@example.com</p>
+        <p>Phone: +91 98765 43210</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ABC College of Engineering</p>
+        <p>All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
